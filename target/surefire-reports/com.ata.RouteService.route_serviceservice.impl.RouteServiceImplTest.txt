@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ata.RouteService.route_serviceservice.impl.RouteServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.348 s -- in com.ata.RouteService.route_serviceservice.impl.RouteServiceImplTest

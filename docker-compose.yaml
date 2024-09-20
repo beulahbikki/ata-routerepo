@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  route-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: route-service:latest
+    container_name: route-service
+    ports:
+      - "9124:9124"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://route-service-postgres:5432/Routedb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=Beulah@333
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka
+    depends_on:
+      - route-service-postgres
+    networks:
+      - atanet
+
+  route-service-postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: Routedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Beulah@333
+    volumes:
+      - pgdata_route:/var/lib/postgresql/data
+    networks:
+      - atanet
+
+networks:
+  atanet:
+    driver: bridge
+
+volumes:
+  pgdata_route:
+
